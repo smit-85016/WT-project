@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designer Home Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        nav {
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li a {
+            color: white;
+            font-size: 16px;
+            text-transform: uppercase;
+            padding: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            background-color: #444;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background: url('./images/t1.jpg') no-repeat center center/cover;
+            height: 80vh;
+            color: rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 40px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* About Section Styles */
+        .about {
+            padding: 50px 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        /* members section style */
+
+
+        /* Services Section Styles */
+        .services {
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .services-grid {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .service-item {
+            background-color: white;
+            padding: 20px;
+            width: 30%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-item h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .service-item p {
+            font-size: 16px;
+        }
+
+        /* Footer Styles */
+        footer {
+            position: relative;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+
+        /*css of Popular Topics to Explore*/
+        .categories {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .categories h2 {
+            color: #FF6F00;
+            margin-bottom: 30px;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+
+        .topic {
+            background-color: #fff;
+            padding: 14px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.1s, box-shadow 0.3s;
+            height: 100px;
+            width: auto;
+        }
+
+        .topic img {
+            margin: auto;
+            padding: auto;
+            width: 50px;
+        }
+
+
+        .topic {
+            transition: all 0.5s ease-in-out;
+
+        }
+
+        .topic:hover {
+            background-color: #FF6F00;
+            /* Background color change on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            /* Smooth shadow effect */
+        }
+
+        .topic p {
+            padding: auto;
+            margin: auto;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            /* Default color */
+            transition: color 0.3s ease-in-out;
+
+        }
+
+        .topic:hover p {
+                color: #fff;
+
+        }
+    </style>
+</head>
+
+<body style="position: relative;">
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Design Studio</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="courses.html">Cources</a></li>
+                <li><a href="./edu_web/edu_web/quizhome.html">Quiz</a></li>
+                <!-- <li><a href="#about">About-Us</a></li> -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Welcome to Design Studio</h2>
+            <p>Where creativity meets functionality.</p>
+            <button id="discoverBtn">Discover More</button>
+        </div>
+    </section>
+
+    <div class="categories">
+        <h2>Popular Topics to Explore</h2>
+        <div class="topics-grid">
+            <div class="topic" data-topic="Microsoft Excel">
+                <img src="./images/cat1.png" alt="Microsoft Excel">
+                <p>Microsoft Excel</p>
+            </div>
+            <div class="topic" data-topic="AWS">
+                <img src="./images/cat2.png" alt="AWS">
+                <p>AWS</p>
+            </div>
+            <div class="topic" data-topic="Python">
+                <img src="./images/cat3.png" alt="Python">
+                <p>Python</p>
+            </div>
+            <div class="topic" data-topic="Java">
+                <img src="./images/cat4.png" alt="Java">
+                <p>Java</p>
+            </div>
+            <div class="topic" data-topic="Web Design">
+                <img src="./images/cat5.png" alt="Web Design">
+                <p>Web Design</p>
+            </div>
+            <div class="topic" data-topic="Web Development">
+                <img src="./images/cat6.png" alt="Web Development">
+                <p>Web Development</p>
+            </div>
+            <div class="topic" data-topic="MySQL">
+                <img src="./images/cat7.png" alt="MySQL">
+                <p>MySQL</p>
+            </div>
+            <div class="topic" data-topic="UI/UX Design">
+                <img src="./images/cat8.png" alt="UI/UX Design">
+                <p>UI/UX Design</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <!-- <div id="services" class="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-item">
+                <h3>Web Design</h3>
+                <p>Beautiful, responsive websites designed to engage users.</p>
+            </div>
+            <div class="service-item">
+                <h3>Graphic Design</h3>
+                <p>Creating memorable logos, branding, and print designs.</p>
+            </div>
+            <div class="service-item">
+                <h3>UX/UI Design</h3>
+                <p>Crafting intuitive and user-friendly interfaces.</p>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- About Section -->
+
+    <!-- Team Menmbers -->
+    <div class="members" id="about" style="height: 1000px;">
+
+        <iframe src="p.html" frameborder="0" width="100%" height="100%"></iframe>
+
+    </div>
+
+
+    <!-- Footer Section -->
+    <footer id="contact">
+        <p>Contact us at: info@designstudio.com</p>
+        <p>© 2024 Design Studio</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subject Selection</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+      position: relative;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      color: #333;
+
+    }
+
+    h1{
+      font-weight: 600;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #333;
+      padding: 10px 20px;
+      color: white;
+    }
+
+    nav {
+      height: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo h1 {
+      font-size: 24px;
+    }
+
+    .nav-links {
+      list-style-type: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      color: white;
+      font-size: 16px;
+      text-transform: uppercase;
+      padding: 8px;
+      transition: background-color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      background-color: #444;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    .subjects {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .subject {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      width: 200px;
+    }
+
+    .subject:hover {
+      transform: scale(1.05);
+    }
+
+    .subject img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .subject p {
+      margin: 10px 0;
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <nav>
+      <div class="logo">
+        <h1>Design Studio</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/homepage.html">Home</a></li>
+        <li><a href="/courses.html">Cources</a></li>
+        <li><a href="/edu_web/edu_web/quizhome.html">Quiz</a></li>
+        <!-- <li><a href="#about">About-Us</a></li> -->
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1 style="padding: 5%;">Quiz page</h1>
+
+    <div class="subjects">
+      <div class="subject" data-subject="webbtech">
+        <img src="/images/webt.png" alt="Web BTech">
+        <p>Web BTech</p>
+      </div>
+      <div class="subject" data-subject="os">
+        <img src="/images/os.png" alt="Operating Systems">
+        <p>Operating Systems</p>
+      </div>
+      <div class="subject" data-subject="ai">
+        <img src="/images/AI.jpg" alt="Artificial Intelligence">
+        <p>Artificial Intelligence</p>
+      </div>
+      <div class="subject" data-subject="maths">
+        <img src="/images/maths.jpg" alt="Mathematics">
+        <p>Mathematics</p>
+      </div>
+      <div class="subject" data-subject="cn">
+        <img src="/images/cn.jpg" alt="Computer Networks">
+        <p>Computer Networks</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Function to handle navigation to the selected quiz page
+    function goToQuiz(subject) {
+      // Display a message or navigate to a specific page
+      switch (subject) {
+        case 'webbtech':
+          window.location.href = 'webbtech-quiz.html';
+          break;
+        case 'os':
+          window.location.href = 'os-quiz.html';
+          break;
+        case 'ai':
+          window.location.href = 'ai-quiz.html';
+          break;
+        case 'maths':
+          window.location.href = 'maths-quiz.html';
+          break;
+        case 'cn':
+          window.location.href = 'cn-quiz.html';
+          break;
+        default:
+          alert('Subject not found!');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const subjects = document.querySelectorAll('.subject');
+      subjects.forEach(subject => {
+        subject.addEventListener('click', () => {
+          const subjectId = subject.getAttribute('data-subject');
+          goToQuiz(subjectId);
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

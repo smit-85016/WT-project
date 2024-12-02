@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Technology Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e8f4fc;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #0056b3;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question p {
+      font-size: 18px;
+      font-weight: bold;
+      color: #003366;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+    }
+    .options label {
+      font-size: 16px;
+      margin: 5px 0;
+      cursor: pointer;
+      color: #004080;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+    }
+    .btn {
+      width: 48%;
+      padding: 10px;
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn:hover {
+      background-color: #004080;
+    }
+    .timer {
+      text-align: center;
+      font-size: 18px;
+      color: #d9534f;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Web BTech Quiz</h1>
+    <div id="quiz">
+      <div class="timer" id="timer"></div>
+      <div class="question">
+        <p id="questionText"></p>
+        <div class="options" id="options"></div>
+      </div>
+      <div class="btn-container">
+        <button class="btn" onclick="nextQuestion()">Next</button>
+        <button class="btn" onclick="skipQuestion()">Skip</button>
+      </div>
+    </div>
+    <div id="result" style="display:none; text-align:center; margin-top: 20px;">
+      <h2>Results:</h2>
+      <p id="score"></p>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      { question: "What is HTML used for?", options: ["Creating styles for websites", "Creating the structure of websites", "Programming websites", "Designing websites"], correct: "Creating the structure of websites" },
+      { question: "What does CSS stand for?", options: ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style Sheets", "Colorful Style Sheets"], correct: "Cascading Style Sheets" },
+      { question: "What is JavaScript used for?", options: ["Creating static websites", "Adding interactivity to websites", "Designing websites", "Structuring websites"], correct: "Adding interactivity to websites" },
+      { question: "What is the full form of HTTP?", options: ["Hypertext Transfer Protocol", "Hyperlink Text Protocol", "High Transfer Text Protocol", "Hyperlink Transmission Protocol"], correct: "Hypertext Transfer Protocol" },
+      { question: "Which tag is used to create a hyperlink in HTML?", options: ["<link>", "<a>", "<href>", "<url>"], correct: "<a>" },
+      { question: "What is the main purpose of a web browser?", options: ["To store data on the internet", "To access and display web pages", "To design websites", "To write code"], correct: "To access and display web pages" },
+      { question: "What is Bootstrap primarily used for?", options: ["Database management", "Front-end framework for responsive web design", "Server-side scripting", "Programming websites"], correct: "Front-end framework for responsive web design" },
+      { question: "What is the purpose of the <head> section in an HTML document?", options: ["To define the header of a webpage", "To contain meta-information about the webpage", "To display content on the webpage", "To store images and videos"], correct: "To contain meta-information about the webpage" },
+      { question: "What is an ID selector in CSS?", options: ["A selector that styles elements with a unique ID", "A selector that styles multiple elements", "A selector that uses classes", "A selector that applies default styles"], correct: "A selector that styles elements with a unique ID" },
+      { question: "Which HTML element is used for inserting a line break?", options: ["<break>", "<lb>", "<br>", "<line>"], correct: "<br>" }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let timer;
+    let timeLeft = 15;
+
+    function loadQuestion() {
+      const questionText = document.getElementById('questionText');
+      const optionsContainer = document.getElementById('options');
+      const timerElement = document.getElementById('timer');
+
+      const question = questions[currentQuestion];
+      questionText.innerText = question.question;
+      optionsContainer.innerHTML = '';
+      question.options.forEach(option => {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'option';
+        input.value = option;
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(option));
+        optionsContainer.appendChild(label);
+      });
+
+      clearInterval(timer);
+      timeLeft = 15;
+      timerElement.innerText = `Time Left: ${timeLeft} seconds`;
+      timer = setInterval(() => {
+        timeLeft--;
+        timerElement.innerText = `Time Left: ${timeLeft} seconds`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          skipQuestion(); // Skip if time runs out
+        }
+      }, 1000);
+    }
+
+    function nextQuestion() {
+      const selectedOption = document.querySelector('input[name="option"]:checked');
+      if (selectedOption && selectedOption.value === questions[currentQuestion].correct) {
+        score++;
+      }
+
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function skipQuestion() {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      const quiz = document.getElementById('quiz');
+      const result = document.getElementById('result');
+      const scoreElement = document.getElementById('score');
+
+      quiz.style.display = 'none';
+      scoreElement.innerText = `You scored ${score} out of ${questions.length}.`;
+      result.style.display = 'block';
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

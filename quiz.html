@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+        }
+
+        h1{
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        nav {
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li a {
+            color: white;
+            font-size: 16px;
+            text-transform: uppercase;
+            padding: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            background-color: #444;
+        }
+
+        .quiz-container {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 20px auto;
+        }
+
+        input,
+        button {
+            width: calc(100% - 10px);
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        p {
+            color: green;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Design Studio</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="courses.html">Cources</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <!-- <li><a href="p.html">About-Us</a></li> -->
+            </ul>
+        </nav>
+    </header>
+
+    <div class="quiz-container">
+        <h2>Quiz</h2>
+        <p id="question">What is 2 + 2?</p>
+        <button onclick="checkAnswer(3)">3</button>
+        <button onclick="checkAnswer(4)">4</button>
+        <button onclick="checkAnswer(5)">5</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        function checkAnswer(answer) {
+            const result = document.getElementById('result');
+            if (answer === 4) {
+                result.innerText = 'Correct!';
+            } else {
+                result.innerText = 'Wrong!';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Networks Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e8f4fc;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #0056b3;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question p {
+      font-size: 18px;
+      font-weight: bold;
+      color: #003366;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+    }
+    .options label {
+      font-size: 16px;
+      margin: 5px 0;
+      cursor: pointer;
+      color: #004080;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+    }
+    .btn {
+      width: 48%;
+      padding: 10px;
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn:hover {
+      background-color: #004080;
+    }
+    .timer {
+      text-align: center;
+      font-size: 18px;
+      color: #d9534f;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Computer Networks Quiz</h1>
+    <div id="quiz">
+      <div class="timer" id="timer"></div>
+      <div class="question">
+        <p id="questionText"></p>
+        <div class="options" id="options"></div>
+      </div>
+      <div class="btn-container">
+        <button class="btn" onclick="nextQuestion()">Next</button>
+        <button class="btn" onclick="skipQuestion()">Skip</button>
+      </div>
+    </div>
+    <div id="result" style="display:none; text-align:center; margin-top: 20px;">
+      <h2>Results:</h2>
+      <p id="score"></p>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      { question: "What does LAN stand for?", options: ["Large Area Network", "Local Area Network", "Long Area Network", "Logical Area Network"], correct: "Local Area Network" },
+      { question: "What is the main purpose of a router?", options: ["To connect devices within a network", "To forward data packets between networks", "To encrypt data", "To store network configurations"], correct: "To forward data packets between networks" },
+      { question: "What protocol is used for secure communication over the Internet?", options: ["HTTP", "SMTP", "HTTPS", "FTP"], correct: "HTTPS" },
+      { question: "Which layer of the OSI model is responsible for routing?", options: ["Transport", "Network", "Data Link", "Application"], correct: "Network" },
+      { question: "What does IP stand for?", options: ["Internet Protocol", "Internal Process", "Interconnected Protocols", "Information Processing"], correct: "Internet Protocol" },
+      { question: "What is a subnet mask used for?", options: ["Encrypting data", "Dividing a network into smaller networks", "Routing data packets", "Assigning IP addresses"], correct: "Dividing a network into smaller networks" },
+      { question: "Which protocol is used for transferring emails?", options: ["HTTP", "SMTP", "FTP", "SNMP"], correct: "SMTP" },
+      { question: "What is the primary function of a firewall?", options: ["To block viruses", "To monitor network traffic", "To prevent unauthorized access", "To speed up the network"], correct: "To prevent unauthorized access" },
+      { question: "Which device connects two different networks?", options: ["Switch", "Router", "Hub", "Repeater"], correct: "Router" },
+      { question: "What is the maximum length of a MAC address?", options: ["48 bits", "32 bits", "64 bits", "128 bits"], correct: "48 bits" }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let timer;
+    let timeLeft = 15;
+
+    function loadQuestion() {
+      const questionText = document.getElementById('questionText');
+      const optionsContainer = document.getElementById('options');
+      const timerElement = document.getElementById('timer');
+
+      const question = questions[currentQuestion];
+      questionText.innerText = question.question;
+      optionsContainer.innerHTML = '';
+      question.options.forEach(option => {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'option';
+        input.value = option;
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(option));
+        optionsContainer.appendChild(label);
+      });
+
+      clearInterval(timer);
+      timeLeft = 15;
+      timerElement.innerText = `Time Left: ${timeLeft} seconds`;
+      timer = setInterval(() => {
+        timeLeft--;
+        timerElement.innerText = `Time Left: ${timeLeft} seconds`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          skipQuestion(); // Skip if time runs out
+        }
+      }, 1000);
+    }
+
+    function nextQuestion() {
+      const selectedOption = document.querySelector('input[name="option"]:checked');
+      if (selectedOption && selectedOption.value === questions[currentQuestion].correct) {
+        score++;
+      }
+
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function skipQuestion() {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      const quiz = document.getElementById('quiz');
+      const result = document.getElementById('result');
+      const scoreElement = document.getElementById('score');
+
+      quiz.style.display = 'none';
+      scoreElement.innerText = `You scored ${score} out of ${questions.length}.`;
+      result.style.display = 'block';
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
