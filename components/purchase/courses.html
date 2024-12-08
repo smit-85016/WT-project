@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Website</title>
+
+    <link rel="stylesheet" href="c-style.css">
+
+
+    <script>
+        // Define an array of courses
+        const courses = [
+            {
+                title: "HTML Course for Beginners",
+                rating: "4.55",
+                learners: "5.8L+ Learners",
+                level: "Beginner",
+                duration: "2.0 Hrs",
+                price: "₹0",
+                badge: "FREE",
+                image: "./course-1.jpg"
+            },
+            {
+                title: "Front End Development - CSS",
+                rating: "4.55",
+                learners: "5.2L+ Learners",
+                level: "Beginner",
+                duration: "4.0 Hrs",
+                price: "₹199",
+                badge: "PAID",
+                image: "./course-2.jpg"
+            },
+            {
+                title: "Introduction to JavaScript",
+                rating: "4.46",
+                learners: "76L+ Learners",
+                level: "Beginner",
+                duration: "2.5 Hrs",
+                price: "₹0",
+                badge: "FREE",
+                image: "./course-3.jpg"
+            },
+            {
+                title: "Python Programming",
+                rating: "3.54",
+                learners: "3.3L+ Learners",
+                level: "Beginner",
+                duration: "3.0 Hrs",
+                price: "₹299",
+                badge: "PAID",
+                image: "./course-4.jpg"
+            },
+            {
+                title: "SQL for Data Science",
+                rating: "4.54",
+                learners: "1.3L+ Learners",
+                level: "Intermediate",
+                duration: "5.0 Hrs",
+                price: "₹0",
+                badge: "FREE",
+                image: "./course-5.jpg"
+            },
+            {
+                title: "ChatGPT for Beginners",
+                rating: "3.55",
+                learners: "3.5L+ Learners",
+                level: "Beginner",
+                duration: "4.5 Hrs",
+                price: "₹0",
+                badge: "FREE",
+                image: "./course-6.jpg"
+            },
+            {
+                title: "AWS for Beginners",
+                rating: "4.53",
+                learners: "1L+ Learners",
+                level: "Beginner",
+                duration: "3.0 Hrs",
+                price: "₹0",
+                badge: "FREE",
+                image: "./course-7.jpg"
+            },
+
+            {
+                title: "Statistics For Data Science",
+                rating: "4.55",
+                learners: "5.3L+ Learners",
+                level: "Intermediate",
+                duration: "2.5 Hrs",
+                price: "₹299",
+                badge: "PAID",
+                image: "./course-8.jpg"
+            },
+            {
+                title: "Java Programming",
+                rating: "4.45",
+                learners: "5L+ Learners",
+                level: "Beginner",
+                duration: "2.0 Hrs",
+                price: "₹0",
+                badge: "FREE",
+                image: "./course-9.jpg"
+            },
+            {
+                title: "C for Beginners",
+                rating: "4.5",
+                learners: "1.1L+ Learners",
+                level: "Beginner",
+                duration: "1.5 Hrs",
+                price: "₹0",
+                badge: "FREE",
+                image: "./course-10.jpg"
+            }
+        ];
+
+
+        function generateCourses() {
+            const courseList = document.querySelector(".course-list"); // Select the container for the courses
+
+            courses.forEach(course => {
+                // Create a course card element
+                const courseCard = document.createElement("div");
+                courseCard.classList.add("course-card");
+
+                // Add badge
+                const badge = document.createElement("div");
+                badge.classList.add("badge", course.badge.toLowerCase());
+                badge.innerText = course.badge;
+                courseCard.appendChild(badge);
+
+                // Add image
+                const img = document.createElement("img");
+                img.src = course.image;
+                img.alt = `${course.title} Image`;
+                img.classList.add("course-image");
+                courseCard.appendChild(img);
+
+                // Add course info
+                const courseInfo = document.createElement("div");
+                courseInfo.classList.add("course-info");
+
+                const title = document.createElement("h3");
+                title.innerText = course.title;
+                courseInfo.appendChild(title);
+
+                const details = document.createElement("p");
+                details.innerHTML = `⭐ ${course.rating} &nbsp;&bull;&nbsp; ${course.learners} &nbsp;&bull;&nbsp; ${course.level}`;
+                courseInfo.appendChild(details);
+
+                const durationAndPrice = document.createElement("p");
+                durationAndPrice.innerHTML = `⏱ ${course.duration} &nbsp;&bull;&nbsp; ${course.price}`;
+                courseInfo.appendChild(durationAndPrice);
+
+                // Add enroll button
+                const button = document.createElement("button");
+                button.classList.add("enroll-btn");
+                button.innerText = "Enroll Now";
+
+                // Add click event listener to the button
+                button.addEventListener("click", () => {
+                    if (course.badge === "PAID") {
+                        // Redirect to the payment gateway page
+                        window.location.href = `payment-gateway.html?course=${encodeURIComponent(course.title)}&price=${encodeURIComponent(course.price)}`;
+                    } else {
+                        alert(`You have successfully enrolled in "${course.title}"!`);
+                    }
+                });
+
+                courseInfo.appendChild(button);
+
+                // Append course info to the card
+                courseCard.appendChild(courseInfo);
+
+                // Append course card to the course list
+                courseList.appendChild(courseCard);
+            });
+        }
+
+        // Call the function when the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", generateCourses);
+
+
+
+    </script>
+</head>
+
+<body>
+
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+
+            <img src="/images/logo2-removebg-preview.png"
+                style="margin-top: 40px; width:200px; height: 100px; object-fit: cover;">
+
+            <ul class="nav-links">
+                <li><a href="/homepage.html">Home</a></li>
+                <li>
+                    <div class="dropdown">
+                        <button class="dropdown-button">courses</button>
+                        <div class="dropdown-content">
+                            <a href="components/courses/web-tech.html">web-tech</a>
+                            <a href="components/courses/os.html">OS</a>
+                            <a href="components/courses/cn.html">CN</a>
+                            <a href="components/courses/ai.html">A.I.</a>
+                            <a href="components/courses/Maths.html">Probability & Statistics</a>
+                        </div>
+                    </div>
+                    <!-- <a href="courses.html">Cources</a> -->
+                </li>
+                <li><a href="components/quize/quizhome.html">Quiz</a></li>
+                <li><a href="components/profile/p.html">About-Us</a></li>
+                <li><a href="./courses.html">Purchase</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+        <section id="courses" class="py-5">
+            <h2 class="text-center text-white mb-4" style="color: aliceblue; text-align: center; padding: 10px;">Our Courses</h2>
+            <div class="course-list">
+                <!-- Dynamically generated courses will appear here  -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 LearnHub. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

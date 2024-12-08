@@ -1,0 +1,162 @@
+body {
+    height: 300px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    display: flex;
+    background-color: #c5d5df;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.container {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 20px 20px;
+    width: 500px;
+    height: 200px;
+    background: linear-gradient(to left, #c5d5df, #191e87);
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-shadow: 2px 03px 10px black;
+
+
+}
+
+.d-flex {
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.pic {
+    height: 150px;
+    width: 160px;
+    border-radius: 50%;
+    box-shadow: 3px 2px 6px black;
+
+
+
+
+
+}
+
+.profile-info {
+    padding: 20px;
+    width: 80%;
+    font-size: 11px;
+}
+
+.profile-info h3 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #c4b8b8;
+    font-family: "Roboto", sans-serif;
+    font-size: large;
+}
+
+.profile-info .info-item {
+    margin-bottom: 4px;
+}
+
+.profile-info .info-item span {
+
+    font-weight: bold;
+}
+
+.profile-info .info-item .value {
+    margin-left: 7px;
+    margin-top: 4px;
+}
+
+.profile-info .divider {
+    border-bottom: 1px solid #c4b8b8;
+    margin: 8px 0;
+}
+
+.profile-info .social-icons {
+    text-align: center;
+}
+
+.profile-info .social-icons a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.value {
+    color: rgb(70, 69, 68);
+    font-family: "Roboto", sans-serif;
+    ;
+}
+
+.Qualifications {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Qualifications ol {
+    margin-bottom: 20px;
+    margin-right: 40px;
+}
+
+
+
+.member-info {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0px 0px 0px 30px;
+
+}
+
+.social {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-left: 7%;
+}
+
+.member-name {
+
+    font-size: 22px;
+    color: rgba(9, 0, 0, 0.821);
+    margin-bottom: 5px;
+
+}
+
+iframe {
+    border: 1px solid black;
+}
+
+
+
+
+
+
+table {
+    border-spacing: 30px;
+
+
+
+
+}
+
+
+.container:hover {
+
+    transform: scale(1.4);
+    background: linear-gradient(to right, #c5d5df, #6faee8d3);
+
+
+}

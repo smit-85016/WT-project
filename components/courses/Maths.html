@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Website</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+        }
+
+        h1 {
+            padding: 0;
+            margin: 0;
+            font-size: 3em;
+        }
+
+        /* Sidebar (Navigation) */
+        nav {
+            width: 250px;
+            background-color: #1376b4;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid rgb(125, 111, 111);
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: block;
+            padding: 10px;
+        }
+
+        nav ul li a:hover {
+            background-color: rgb(213, 148, 28);
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* Main Content Section */
+        main {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+        }
+
+        #videoContainer {
+            text-align: center;
+        }
+
+        iframe {
+            width: 90%;
+            height: 450px;
+            border: none;
+            display: none;
+        }
+
+        iframe.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showVideo('video1')">Topic 1: Basic Math</a></li>
+            <li><a href="#" onclick="showVideo('video2')">Topic 2: Probability</a></li>
+            <li><a href="#" onclick="showVideo('video3')">Topic 3: Statistics</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Probability & Statistics</h2>
+        <div id="videoContainer">
+            <iframe id="video1" class="active" src="https://www.youtube.com/embed/04MWqyhD61g" allowfullscreen></iframe>
+            <iframe id="video2" src="https://www.youtube.com/embed/o8vx8LqZ0Cg" allowfullscreen></iframe>
+            <iframe id="video3" src="https://www.youtube.com/embed/iQ9KKohrD-Y" allowfullscreen></iframe>
+        </div>
+    </main>
+
+    <script>
+        // Function to display the selected video
+        function showVideo(videoId) {
+            // Hide all iframes
+            const videos = document.querySelectorAll('iframe');
+            videos.forEach(video => video.classList.remove('active'));
+
+            // Show the selected video
+            const selectedVideo = document.getElementById(videoId);
+            if (selectedVideo) {
+                selectedVideo.classList.add('active');
+            }
+        }
+
+        // Show the first video (Topic 1) by default
+        window.onload = function () {
+            showVideo('video1');
+        };
+    </script>
+
+</body>
+
+</html>

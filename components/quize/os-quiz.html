@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OS Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e8f4fc;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #0056b3;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question p {
+      font-size: 18px;
+      font-weight: bold;
+      color: #003366;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+    }
+    .options label {
+      font-size: 16px;
+      margin: 5px 0;
+      cursor: pointer;
+      color: #004080;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+    }
+    .btn {
+      width: 48%;
+      padding: 10px;
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn:hover {
+      background-color: #004080;
+    }
+    .timer {
+      text-align: center;
+      font-size: 18px;
+      color: #d9534f;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>OS Quiz</h1>
+    <div id="quiz">
+      <div class="timer" id="timer"></div>
+      <div class="question">
+        <p id="questionText"></p>
+        <div class="options" id="options"></div>
+      </div>
+      <div class="btn-container">
+        <button class="btn" onclick="nextQuestion()">Next</button>
+        <button class="btn" onclick="skipQuestion()">Skip</button>
+      </div>
+    </div>
+    <div id="result" style="display:none; text-align:center; margin-top: 20px;">
+      <h2>Results:</h2>
+      <p id="score"></p>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      { question: "What is an operating system?", options: ["Hardware", "System software", "Application software", "Utility software"], correct: "System software" },
+      { question: "Which of the following is NOT an operating system?", options: ["Windows", "Linux", "Oracle", "MacOS"], correct: "Oracle" },
+      { question: "What is the primary purpose of an operating system?", options: ["To manage hardware resources", "To compile programs", "To edit documents", "To play games"], correct: "To manage hardware resources" },
+      { question: "What is a kernel in an operating system?", options: ["A type of virus", "The core of the operating system", "An application software", "A programming language"], correct: "The core of the operating system" },
+      { question: "Which of these is an example of a real-time operating system?", options: ["Linux", "Windows", "VxWorks", "MacOS"], correct: "VxWorks" },
+      { question: "What is a process in operating systems?", options: ["A program in execution", "A program stored on disk", "A system call", "A hardware device"], correct: "A program in execution" },
+      { question: "What does CPU scheduling determine?", options: ["Which processes will execute first", "Which hardware to use", "The speed of the CPU", "None of the above"], correct: "Which processes will execute first" },
+      { question: "Which operating system is open-source?", options: ["Windows", "Linux", "MacOS", "iOS"], correct: "Linux" },
+      { question: "What does 'multitasking' mean in an OS?", options: ["Multiple CPUs", "Running multiple processes simultaneously", "Using multiple keyboards", "None of the above"], correct: "Running multiple processes simultaneously" },
+      { question: "What is virtual memory?", options: ["An extra RAM", "A part of hard drive used as RAM", "Memory stored in the cloud", "Memory stored in a USB"], correct: "A part of hard drive used as RAM" }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let timer;
+    let timeLeft = 15;
+
+    function loadQuestion() {
+      const questionText = document.getElementById('questionText');
+      const optionsContainer = document.getElementById('options');
+      const timerElement = document.getElementById('timer');
+
+      const question = questions[currentQuestion];
+      questionText.innerText = question.question;
+      optionsContainer.innerHTML = '';
+      question.options.forEach(option => {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'option';
+        input.value = option;
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(option));
+        optionsContainer.appendChild(label);
+      });
+
+      clearInterval(timer);
+      timeLeft = 15;
+      timerElement.innerText = `Time Left: ${timeLeft} seconds`;
+      timer = setInterval(() => {
+        timeLeft--;
+        timerElement.innerText = `Time Left: ${timeLeft} seconds`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          skipQuestion(); // Skip if time runs out
+        }
+      }, 1000);
+    }
+
+    function nextQuestion() {
+      const selectedOption = document.querySelector('input[name="option"]:checked');
+      if (selectedOption && selectedOption.value === questions[currentQuestion].correct) {
+        score++;
+      }
+
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function skipQuestion() {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      const quiz = document.getElementById('quiz');
+      const result = document.getElementById('result');
+      const scoreElement = document.getElementById('score');
+
+      quiz.style.display = 'none';
+      scoreElement.innerText = `You scored ${score} out of ${questions.length}.`;
+      result.style.display = 'block';
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

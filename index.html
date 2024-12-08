@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Login & Sign Up</title>
+    <style>
+        /* styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    overflow: hidden;
+}
+
+.form-wrapper {
+    text-align: center;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid #f0f0f0;
+    background-color: #f8f8f8;
+}
+
+.form-header .button {
+    flex: 1;
+    padding: 15px 0;
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.form-header .button.active {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+}
+
+.form-header .button:hover {
+    color: #0056b3;
+}
+
+.form-content {
+    display: none;
+    padding: 30px 20px;
+}
+
+.form-content.active {
+    display: block;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form .button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+form .button:hover {
+    background-color: #0056b3;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <button id="login-btn" class="active" onclick="showLogin()">Login</button>
+                <button id="signup-btn" onclick="showSignUp()">Sign Up</button>
+            </div>
+            <div id="login-form" class="form-content active">
+                <form action="homepage.html" method="POST">
+                    <h2>Welcome Back!</h2>
+                    <input type="email" placeholder="Email" required />
+                    <input type="password" placeholder="Password" required />
+                   <a href="homepage.html" class="button"</a> 
+                </form>
+            </div>
+            <div id="signup-form" class="form-content">
+                <form action="homepage.html" method="POST">
+                    <h2>Create an Account</h2>
+                    <input type="text" placeholder="Full Name" required />
+                    <input type="email" placeholder="Email" required />
+                    <input type="password" placeholder="Password" required />
+                    <button class="button">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+
+function showLogin() {
+    document.getElementById("login-form").classList.add("active");
+    document.getElementById("signup-form").classList.remove("active");
+    document.getElementById("login-btn").classList.add("active");
+    document.getElementById("signup-btn").classList.remove("active");
+}
+
+function showSignUp() {
+    document.getElementById("signup-form").classList.add("active");
+    document.getElementById("login-form").classList.remove("active");
+    document.getElementById("signup-btn").classList.add("active");
+    document.getElementById("login-btn").classList.remove("active");
+}
+    </script>
+</body>
+</html>

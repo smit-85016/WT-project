@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Website</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+        }
+
+        h1 {
+            padding: 0;
+            margin: 0;
+            font-size: 3em;
+        }
+
+        /* Sidebar (Navigation) */
+        nav {
+            width: 250px;
+            background-color: #1376b4;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid rgb(125, 111, 111);
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: block;
+            padding: 10px;
+        }
+
+        nav ul li a:hover {
+            background-color: rgb(213, 148, 28);
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* Main Content Section */
+        main {
+            margin-left: 250px;
+            /* Leave space for the sidebar */
+            padding: 0;
+            width: 100%;
+        }
+
+        #videoSection {
+            padding: 0px;
+            text-align: center;
+        }
+
+        #videoContainer {
+            display: none;
+            /* Hide all video containers initially */
+        }
+
+        .video {
+            width: 90%;
+            height: 450px;
+            margin: 20px auto;
+            display: none;
+        }
+
+        .video.active {
+            display: block;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#topic1" onclick="showVideo('video1')">Topic 1: Introduction</a></li>
+            <li><a href="#topic2" onclick="showVideo('video2')">Topic 2: Types of Network</a></li>
+            <li><a href="#topic3" onclick="showVideo('video3')">Topic 3: Network Devices</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="videoSection">
+            <h2>Computer Network</h2>
+            <div id="videoContainer">
+                <iframe id="video1" class="video" src="https://www.youtube.com/embed/JFF2vJaN0Cw" frameborder="0"
+                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="video2" class="video" src="https://www.youtube.com/embed/4D55Cmj2t-A" frameborder="0"
+                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="video3" class="video" src="https://www.youtube.com/embed/n0iaPtsnmxQ" frameborder="0"
+                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+    </main>
+
+
+    <script>
+        // Function to show the corresponding video based on the topic clicked
+        function showVideo(videoId) {
+            // Hide all videos initially
+            const videos = document.querySelectorAll('.video');
+            videos.forEach(video => {
+                video.classList.remove('active');
+            });
+
+            // Display the selected video
+            const selectedVideo = document.getElementById(videoId);
+            selectedVideo.classList.add('active');
+
+            // Show the video container
+            document.getElementById('videoContainer').style.display = 'block';
+        }
+
+        // Show Topic 1 video by default on page load
+        window.onload = function () {
+            showVideo('video1');
+        };
+    </script>
+</body>
+
+</html>
